@@ -40,3 +40,8 @@ data$activity <- factor(data$activity,labels=unlist(activity_labels[2]))
 tidy<-data %>%
     group_by(measurement,activity,subjectid) %>%
     summarize(averages = mean(mean))
+
+# Save tidied data
+if (!file.exists("./tidydata")) {dir.create("./tidydata")}
+write.csv(data,"./tidydata/data.csv")
+write.csv(tidy,"./tidydata/tidy.csv")
